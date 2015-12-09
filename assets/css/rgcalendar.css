@@ -67,9 +67,7 @@ table {
     color: #7c8a95;
 }
 
-.calendar tbody td:hover {
-    /* border: 2px solid #c0392b; */
-}
+
 
 .calendar tbody td.active {
     border: 2px solid #c0392b;
@@ -91,16 +89,20 @@ table {
     border: 1px solid #fff;
 }
 
-.current-day {
-    background: #c0392b;
-    color: #f9f9f9;
-}
 
 .event {
     /* cursor: pointer;
     position: relative; */
     background-color: #4eb5f7;
     color: white;
+}
+
+.current-day {
+    background-color: #c0392b;
+    color: #f9f9f9;
+}
+.calendar tbody td:hover {
+    /* border: 2px solid #c0392b; */
 }
 
 /* .event:after {

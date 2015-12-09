@@ -3,29 +3,22 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>SimpleCalendar</title>
-	<link rel="stylesheet" href="assets/css/style-personal.css">
+	<link rel="stylesheet" href="assets/css/rgcalendar.css">
 	<script src="assets/js/zepto.min.js" type="text/javascript"></script>
-	<script src="assets/js/simplecalendar.js" type="text/javascript"></script>
+	<script src="assets/js/rgcalendar.js" type="text/javascript"></script>
 </head>
 <body>
-	<div class="rg-calendar-wrapper calendar hidden-print">
-		<!-- <header class="ym">
-				<h2 class="month"></h2>
-				<a class="btn-prev fontawesome-angle-left" href="#"></a>
-				<a class="btn-next fontawesome-angle-right" href="#"></a>
-		</header> -->
-		<!-- <table>
-			<thead class="event-days">
-				<tr></tr>
-			</thead>
-			<tbody class="event-calendar">
-				<tr class="one"></tr>
-				<tr class="two"></tr>
-				<tr class="three"></tr>
-				<tr class="four"></tr>
-				<tr class="five"></tr>
-			</tbody>
-		</table> -->
+	<div style="font-size:16px;font-weight: 600;line-height: 1.5em;margin:20px;">
+		<p>两个实例传入的标记时间均为2015-12-1、2015-11-1、2015-11-25</p>
+		<p>第二个实例传入的起始时间2015-11-3 - 2016-02-1</p>
+	</div>
+
+	<!-- 第一个实例parentNode -->
+	<div class="rg-calendar-wrapper calendar hidden-print" style="border:4px dotted #ddd; margin: 20px;padding: 20px;">
+	</div>
+
+	<!-- 第二个实例parentNode -->
+	<div class="rg-calendar-wrapper1 calendar hidden-print" style="border:4px dotted #ddd; margin: 20px;padding: 20px;">
 	</div>
 
 	<script type="text/javascript">
@@ -39,11 +32,23 @@
 		        /*startTime:startTime,
 		        endTime:endTime,*/
 		        showSTAll:true,
-		        isfocus:false,
-		        /*focusTime:endTime,*/
+		        isfocus:true,
+		        focusTime:endTime,
 		        eventsDate:[time1,time2,time3],
 		        parentNode:$('.rg-calendar-wrapper'),
 		        startMonthDay:7
+		    });
+
+		    var calendar1 = new RgCalendar({
+		        startTime:'2015-11-3',
+		        endTime:'2016-02-1',
+		        showSTAll:true,
+		        isfocus:true,
+		        focusTime:endTime,
+		        eventsDate:[time1,time2,time3,'2015-12-5'],
+		        parentNode:$('.rg-calendar-wrapper1'),
+		        startMonthDay:1,
+		        eventClass:'event'
 		    });
 		});
 	</script>

@@ -7,6 +7,7 @@ function RgCalendar(options){
         showSTAll:false,
         isfocus:true,
         startMonthDay:1,
+        eventClass:'event',
         focusTime:null//初始时间,不传默认为当前日期
     },options);
     this._init();
@@ -60,10 +61,10 @@ RgCalendar.prototype = {
         var _this = this;
         var options = _this._options;
         options.parentNode.on('click','.btn-next', function(e) {
-            var monthNumber = $('.month').attr('data-month');
+            var monthNumber =  options.parentNode.find('.month').attr('data-month');
             if (monthNumber > 11) {
-                $('.month').attr('data-month', '0');
-                var monthNumber = $('.month').attr('data-month');
+                 options.parentNode.find('.month').attr('data-month', '0');
+                var monthNumber =  options.parentNode.find('.month').attr('data-month');
                 yearNumber = yearNumber + 1;
                 options.parentNode.empty();
                 _this.setMonth(parseInt(monthNumber) + 1, mon, tue, wed, thur, fri, sat, sund,yearNumber);
@@ -74,10 +75,10 @@ RgCalendar.prototype = {
         });
 
         options.parentNode.on('click','.btn-prev', function(e) {
-            var monthNumber = $('.month').attr('data-month');
+            var monthNumber = options.parentNode.find('.month').attr('data-month');
             if (monthNumber < 2) {
-                $('.month').attr('data-month', '13');
-                var monthNumber = $('.month').attr('data-month');
+                options.parentNode.find('.month').attr('data-month', '13');
+                var monthNumber = options.parentNode.find('.month').attr('data-month');
                 yearNumber = yearNumber - 1;
                 options.parentNode.empty();
                 _this.setMonth(parseInt(monthNumber) - 1, mon, tue, wed, thur, fri, sat, sund,yearNumber);
@@ -211,19 +212,21 @@ RgCalendar.prototype = {
             node.append(tr);
     },
     setCurrentDay:function(month, year, yearNumber){//设置当天日期
-        $('tbody.event-calendar[data-month="'+ month +'"][date-year="' + year + '"] td[date-day="' + this.nowTime.getDate() + '"]').addClass('current-day');
+        var options = this._options;
+        options.parentNode.find('tbody.event-calendar[data-month="'+ month +'"][date-year="' + year + '"] td[date-day="' + this.nowTime.getDate() + '"]').addClass('current-day');
     },
     setEvent:function(){//设置标识
-        var options = this._options.eventsDate;
-        if (options.length > 1) {
-            $(options).each(function(i) {
+        var options = this._options;
+        var eventsDate = this._options.eventsDate;
+        if (eventsDate.length > 1) {
+            $(eventsDate).each(function(i) {
                 try{
-                    var date = new Date(options[i]);
+                    var date = new Date(eventsDate[i]);
                     var eventMonth = date.getMonth() + 1;
                     var eventDay = date.getDate();
                     var eventYear = date.getFullYear();
-                    var eventClass = 'event';
-                    $('tbody.event-calendar[data-month="'+ eventMonth +'"][date-year="' + eventYear + '"] tr td[date-month="' + eventMonth + '"][date-day="' + eventDay + '"]').addClass(eventClass);
+                    var eventClass = options.eventClass;
+                     options.parentNode.find('tbody.event-calendar[data-month="'+ eventMonth +'"][date-year="' + eventYear + '"] tr td[date-month="' + eventMonth + '"][date-day="' + eventDay + '"]').addClass(eventClass);
                 }catch(e){
                     console.log(e);
                 }
