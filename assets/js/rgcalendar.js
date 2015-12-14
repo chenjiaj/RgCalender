@@ -218,7 +218,7 @@ RgCalendar.prototype = {
     setEvent:function(){//设置标识
         var options = this._options;
         var eventsDate = this._options.eventsDate;
-        if (eventsDate.length > 1) {
+        if (eventsDate.length >= 1) {
             $(eventsDate).each(function(i) {
                 try{
                     var date = new Date(eventsDate[i]);
