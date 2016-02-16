@@ -7,6 +7,8 @@ function RgCalendar(options){
         showSTAll:false,
         isfocus:true,
         startMonthDay:1,
+        prevText:'',
+        nextText:'',
         eventClass:'event',
         isExtended:false,
         focusTime:null//初始时间,不传默认为当前日期
@@ -114,11 +116,12 @@ RgCalendar.prototype = {
     },
     setMonth:function(monthNumber, mon, tue, wed, thur, fri, sat, sund, yearNumber){//设置月份 年份显示
         var wrapper = $('<div class="one-canlendar"  data-month="'+ monthNumber +'" date-year="' + yearNumber + '"></div>');
-        if (this._options.toggle) {
+        var options = this._options;
+        if (options.toggle) {
             var header = $('<header class="ym">'+
                 '<h2 class="month"></h2>'+
-                '<a class="btn-prev fontawesome-angle-left" href="#"></a>'+
-                '<a class="btn-next fontawesome-angle-right" href="#"></a>'+
+                '<a class="btn-prev fontawesome-angle-left" href="#">' + options.prevText + '</a>'+
+                '<a class="btn-next fontawesome-angle-right" href="#">' + options.nextText +'</a>'+
                 '</header>');
         }else{
             var header = $('<header class="ym">'+
