@@ -209,6 +209,12 @@ table {
 .calendar .endDay{
     border:1px solid orange;
 }
+.calendar .beforStartDay {
+    background-color: #eee;
+}
+.calendar .afterEndDay{
+    background-color: #eee;
+}
 
 .check-btn {
     width: 100%;

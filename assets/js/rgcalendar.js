@@ -183,7 +183,12 @@ RgCalendar.prototype = {
                     options.parentNode.find('.btn-next').addClass('disabled');
                     if (yearNumber == options.endYear && monthNumber == options.endMon) {
                         options.parentNode.find('tbody.event-calendar[data-month="'+ options.endMon +'"][date-year="' + options.endYear + '"] tr td[date-month="' + options.endMon + '"][date-day="' + options.endDay + '"]').addClass('endDay');
+                        for(var i = options.endDay + 1; i < daysArr.length; i++)
+                        {
+                            options.parentNode.find('tbody.event-calendar[data-month="'+ options.endMon +'"][date-year="' + options.endYear + '"] tr td[date-month="' + options.endMon + '"][date-day="' + i + '"]').addClass('afterEndDay');  
+                        }
                     }
+
                 }else{
                     options.parentNode.find('.btn-next').removeClass('disabled');
                 }
@@ -191,6 +196,10 @@ RgCalendar.prototype = {
                 if (options.startTime && yearNumber <= options.startYear && monthNumber <= options.startMon ) {
                     if (yearNumber == options.startYear && monthNumber == options.startMon) {
                         options.parentNode.find('tbody.event-calendar[data-month="'+ options.startMon +'"][date-year="' + options.startYear + '"] tr td[date-month="' + options.startMon + '"][date-day="' + options.startDay + '"]').addClass('startDay');
+                        for(var i = 1; i < options.startDay; i++)
+                        {
+                            options.parentNode.find('tbody.event-calendar[data-month="'+ options.startMon +'"][date-year="' + options.startYear + '"] tr td[date-month="' + options.startMon + '"][date-day="' + i + '"]').addClass('beforStartDay');  
+                        }
                     }
                     options.parentNode.find('.btn-prev').addClass('disabled');
                 }else{

@@ -28,12 +28,12 @@
 可以传入一下参数，改变默认日历样子：
 
 1.`startTime`：默认为null;
-活动开始时间，当isExtended为true时，必须同时传入endTime才生效，传入后按活动时间段展示，当isExtended为false时，只显示一个月，通过切换按钮切换显示月份，传入startTime后，点击上一个月，当上一个月小于startTime后将按钮置为disabled，可以设置.ym .disabled的样式,可以通过.calendar .startDay给活动开始的日期设置样式
+活动开始时间，当isExtended为true时，必须同时传入endTime才生效，传入后按活动时间段展示，当isExtended为false时，只显示一个月，通过切换按钮切换显示月份，传入startTime后，点击上一个月，当上一个月小于startTime后将按钮置为disabled，可以设置.ym .disabled的样式,可以通过.calendar .startDay给活动开始的日期设置样式,开始日期当月在开始日期前的日期可以通过.calendar .beforStartDay 设置样式
 
 接收格式：可以为2016-02-1、毫秒数等其它可以传入new Date()的参数
 
 2.`endTime`：默认为null;
-活动结束时间，当isExtended为true时，必须同时传入endTime才生效，传入后按活动时间段展示，当isExtended为false时，只显示一个月，通过切换按钮切换显示月份，传入endTime后，点击下一个月，当下一个月大于于endTime后将按钮置为disabled，可以设置.ym .disabled的样式，可以通过.calendar .endDay给活动结束的日期设置样式
+活动结束时间，当isExtended为true时，必须同时传入endTime才生效，传入后按活动时间段展示，当isExtended为false时，只显示一个月，通过切换按钮切换显示月份，传入endTime后，点击下一个月，当下一个月大于于endTime后将按钮置为disabled，可以设置.ym .disabled的样式，可以通过.calendar .endDay给活动结束的日期设置样式，结束日期当月在结束日期后的日期可以通过.calendar .afterEndDay 设置样式
 
 接收格式：可以为2016-02-1、毫秒数等其它可以传入new Date()的参数
 
