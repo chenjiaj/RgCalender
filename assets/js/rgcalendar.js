@@ -8,6 +8,7 @@ function RgCalendar(options){
         isfocus:true,
         startMonthDay:1,
         eventClass:'event',
+        isExtended:false,
         focusTime:null//初始时间,不传默认为当前日期
     },options);
     this._init();
@@ -24,7 +25,17 @@ RgCalendar.prototype = {
         var sund = '日';
         var options = this._options;
         this.nowTime = options.focusTime ? new Date(options.focusTime) : new Date();
-        if (options.startTime && options.endTime) {
+        if (options.startTime && options.endTime ) {
+            var start = new Date(options.startTime);
+                options.startYear = start.getFullYear();
+                options.startMon = start.getMonth() + 1;
+                options.startDay = start.getDate();
+            var end = new Date(options.endTime);
+                options.endYear = end.getFullYear();
+                options.endMon = end.getMonth() + 1;
+                options.endDay = end.getDate();
+        }
+        if (options.startTime && options.endTime && options.isExtended) {
             this._options.toggle = false;
             this.startTime = new Date(options.startTime);
             this.endTime = new Date(options.endTime);
@@ -62,8 +73,13 @@ RgCalendar.prototype = {
         var options = _this._options;
         options.parentNode.on('click','.btn-next', function(e) {
             var monthNumber =  options.parentNode.find('.month').attr('data-month');
+            if (options.endTime && yearNumber >= options.endYear && parseInt(monthNumber) + 1 > options.endMon ) {
+                options.parentNode.find('.btn-next').addClass('disabled');
+                alert("ss");
+                return;
+            }
             if (monthNumber > 11) {
-                 options.parentNode.find('.month').attr('data-month', '0');
+                options.parentNode.find('.month').attr('data-month', '0');
                 var monthNumber =  options.parentNode.find('.month').attr('data-month');
                 yearNumber = yearNumber + 1;
                 options.parentNode.empty();
@@ -76,6 +92,10 @@ RgCalendar.prototype = {
 
         options.parentNode.on('click','.btn-prev', function(e) {
             var monthNumber = options.parentNode.find('.month').attr('data-month');
+            if (options.startTime && yearNumber <= options.startYear && parseInt(monthNumber) - 1 < options.startMon ) {
+                options.parentNode.find('.btn-prev').addClass('disabled');
+                return;
+            }
             if (monthNumber < 2) {
                 options.parentNode.find('.month').attr('data-month', '13');
                 var monthNumber = options.parentNode.find('.month').attr('data-month');
@@ -155,6 +175,26 @@ RgCalendar.prototype = {
                 var thisyear = this.nowTime.getFullYear();
                 _this.setCurrentDay(month, thisyear, yearNumber);
             };
+            if (this._options.toggle) {
+                if (options.endTime && yearNumber >= options.endYear && monthNumber >= options.endMon ) {
+                    options.parentNode.find('.btn-next').addClass('disabled');
+                    if (yearNumber == options.endYear && monthNumber == options.endMon) {
+                        options.parentNode.find('tbody.event-calendar[data-month="'+ options.endMon +'"][date-year="' + options.endYear + '"] tr td[date-month="' + options.endMon + '"][date-day="' + options.endDay + '"]').addClass('endDay');
+                    }
+                }else{
+                    options.parentNode.find('.btn-next').removeClass('disabled');
+                }
+
+                if (options.startTime && yearNumber <= options.startYear && monthNumber <= options.startMon ) {
+                    if (yearNumber == options.startYear && monthNumber == options.startMon) {
+                        options.parentNode.find('tbody.event-calendar[data-month="'+ options.startMon +'"][date-year="' + options.startYear + '"] tr td[date-month="' + options.startMon + '"][date-day="' + options.startDay + '"]').addClass('startDay');
+                    }
+                    options.parentNode.find('.btn-prev').addClass('disabled');
+                }else{
+                    options.parentNode.find('.btn-prev').removeClass('disabled');
+                }
+            }
+            
 
             _this.setEvent();
     },

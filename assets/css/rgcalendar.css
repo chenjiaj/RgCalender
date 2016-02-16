@@ -142,6 +142,11 @@ table {
     color: #f9f9f9;
 }
 
+.disabled{
+    display: none
+}
+
+
 .btn-prev {
     left: 30px;
 }
@@ -197,6 +202,12 @@ table {
     cursor: pointer;
     -webkit-box-shadow: inset 0 -2px #b53224;
     box-shadow: inset 0 -2px #b53224;
+}
+.calendar .startDay{
+    border:1px solid orange;
+}
+.calendar .endDay{
+    border:1px solid orange;
 }
 
 .check-btn {

@@ -21,18 +21,19 @@
             eventsDate:[time1,time2,time3],
             parentNode:$('.rg-calendar-wrapper1'),
             startMonthDay:1,
-            eventClass:'event'
+            eventClass:'event',
+            isExtended:false
         });
 
 可以传入一下参数，改变默认日历样子：
 
 1.`startTime`：默认为null;
-活动开始时间，必须同时传入endTime才生效，传入后按活动时间段展示，不传入此参数只显示一个月，通过切换按钮切换显示月份
+活动开始时间，当isExtended为true时，必须同时传入endTime才生效，传入后按活动时间段展示，当isExtended为false时，只显示一个月，通过切换按钮切换显示月份，传入startTime后，点击上一个月，当上一个月小于startTime后将按钮置为disabled，可以设置.ym .disabled的样式,可以通过.calendar .startDay给活动开始的日期设置样式
 
 接收格式：可以为2016-02-1、毫秒数等其它可以传入new Date()的参数
 
 2.`endTime`：默认为null;
-活动结束时间，必须同时传入endTime才生效，传入后按活动时间段展示，不传入此参数只显示一个月，通过切换按钮切换显示月份
+活动结束时间，当isExtended为true时，必须同时传入endTime才生效，传入后按活动时间段展示，当isExtended为false时，只显示一个月，通过切换按钮切换显示月份，传入endTime后，点击下一个月，当下一个月大于于endTime后将按钮置为disabled，可以设置.ym .disabled的样式，可以通过.calendar .endDay给活动结束的日期设置样式
 
 接收格式：可以为2016-02-1、毫秒数等其它可以传入new Date()的参数
 
@@ -57,6 +58,9 @@
 
 9.`eventClass`:默认为event，此参数表示标记的日记的class的名字
 
+10.`isExtended`:默认为false，此参数表示是按照时间段显示还是按照传统日历插件的样式显示（只显示一个月，通过切换按钮切换显示月份）,当值为true时，必须同时传入startTime和endTime才生效
+
+接收格式：true 或 false
 
 #### 说明
 
